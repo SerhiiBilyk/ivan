@@ -12,26 +12,50 @@ import * as AppActions from '../../actions/change.js';
 class Test extends React.Component {
   constructor(props) {
     super(props)
+    this.state={
+      counter:0
+    }
+    this.increment=this.increment.bind(this)
+  }
+  increment(){
+    console.log('increment')
+    this.setState(prevState=>({counter:prevState.counter+=1}))
+  }
+  showState(){
+    console.log('STATEq',this.state)
   }
 
   render() {
-    const {childIds, id} = this.props;
-    console.log('outer props',this.props)
+console.log(this.state)
+var {childIds}=this.props
     return (
       <ul>
-        {childIds.length>0?childIds.map(childId => {
-          const {id} = this.props;
-          console.log('inside map',this.props)
+        {childIds.map(childId => {
           return (
             <li key={childId}>
-              <span data-index='inner'>{this.props.name!=='zero'?this.props.name:''}</span>
               <TestWrapper id={childId}/>
+              <button>Click</button>
             </li>
           )
-        }):<li>
-          <span data-index='empty'>{this.props.name}</span>
-        </li>}
+        })}
       </ul>
+      /*
+      <ul>
+        {this.props.filter.map(childId => {
+          return this.props.menu[childId].childIds.length>0?(
+            <li key={childId}>
+              <span>{this.props.menu[childId].name}/{this.state.counter}</span>
+              <TestWrapper filter={this.props.menu[childId].childIds} id={this.props.menu[childId].id}/>
+              <button onClick={e=>this.increment()}>Click</button>
+            </li>
+          ):(
+            <li key={childId}>
+              <span data-index={this.props.menu[childId].id}>{this.props.menu[childId].name}</span>
+            </li>
+          )
+        })}
+      </ul>
+      */
     )
 
   }
@@ -39,9 +63,11 @@ class Test extends React.Component {
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(AppActions, dispatch);
 
-function mapStateToProps(state, ownProps) {
-  console.log('ownProps',ownProps,'\nstate',state.navigationReducer.menu[ownProps.id])
-  return  state.navigationReducer.menu[ownProps.id]
+function mapStateToProps(state,ownProps) {
+  //  console.log('ownProps',ownProps,'\nstate',state.navigationReducer.menu[ownProps.id])
+  return state.navigationReducer.menu[ownProps.id]//,  filter:ownProps.filter
+
+
 }
 
 const CSSModule = CSSModules(Test, styles, {allowMultiple: true});
