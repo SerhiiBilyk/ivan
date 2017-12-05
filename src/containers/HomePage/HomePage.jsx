@@ -7,9 +7,7 @@ import Wrapper from '../../components/wrapper.js';
 export  class HomePage extends React.Component {
   constructor(props) {
     super(props);
-
   }
-
   render() {
     return (
       <div>
@@ -20,4 +18,4 @@ export  class HomePage extends React.Component {
 }
 
 
-export default Wrapper(HomePage,styles);
+export default CSSModules(HomePage, styles, {allowMultiple: true});

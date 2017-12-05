@@ -17,6 +17,11 @@ module.exports = merge(common, {
     contentBase: path.join(__dirname, './dist'),
     hot: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()
+  plugins: [new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+        'process.env': {
+          'NODE_ENV': JSON.stringify('development')
+        }
+      }),
    ]
 });

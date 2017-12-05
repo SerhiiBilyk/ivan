@@ -5,44 +5,45 @@ import CSSModules from 'react-css-modules';
 import styles from './test.scss';
 import Wrapper from '../wrapper.js';
 
-function filterByArray(original, filter, by = 'id') {
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as AppActions from '../../actions/change.js';
 
-  return original.filter((el, index) => {
-    return filter.indexOf(el[by]) !== -1
-      ? true
-      : false
-  })
-}
 class Test extends React.Component {
   constructor(props) {
     super(props)
   }
-  foo(immutable,filter=[]) {
-  	//var gen=filterByArray(immutable,filter)
-    return `<ul>
-    ${filter.map((elem,index) => {
-  		if(immutable[elem].childIds){
-        return `<li>${immutable[elem].name}${this.foo(immutable,immutable[elem].childIds)}</li>`
-  		}else{
-  			return `<li>${immutable[elem].name}</li>`
-  		}
 
-        })
-
-  }
-    </ul>`
-  }
   render() {
+    const {childIds, id} = this.props;
+    console.log('outer props',this.props)
     return (
-      <div>
-        <p>TEST</p>
-        <ul>
-          {this.foo(this.props.navigation.navState.tree,this.props.navigation.navState.tree[0].childIds)}
-        </ul>
-      </div>
+      <ul>
+        {childIds.length>0?childIds.map(childId => {
+          const {id} = this.props;
+          console.log('inside map',this.props)
+          return (
+            <li key={childId}>
+              <span data-index='inner'>{this.props.name!=='zero'?this.props.name:''}</span>
+              <TestWrapper id={childId}/>
+            </li>
+          )
+        }):<li>
+          <span data-index='empty'>{this.props.name}</span>
+        </li>}
+      </ul>
     )
+
   }
 }
 
-var TestWrapper = Wrapper(Test, styles);
+const mapDispatchToProps = (dispatch) => bindActionCreators(AppActions, dispatch);
+
+function mapStateToProps(state, ownProps) {
+  console.log('ownProps',ownProps,'\nstate',state.navigationReducer.menu[ownProps.id])
+  return  state.navigationReducer.menu[ownProps.id]
+}
+
+const CSSModule = CSSModules(Test, styles, {allowMultiple: true});
+var TestWrapper = connect(mapStateToProps, mapDispatchToProps)(CSSModule)
 export default TestWrapper;

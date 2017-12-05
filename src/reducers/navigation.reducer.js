@@ -1,10 +1,7 @@
 import {
-  CHANGE_TABINDEX,
-  SWITCH_FOCUS_EXPANDED_MODE,
-  ASSIGN_ELEMENT,
-  PREVIOUS_ELEMENT
+  CHANGE_TABINDEX
 } from '../constans';
-import {menu,reset} from './menu.js';
+import {menu} from './menu.js';
 
 
 
@@ -24,24 +21,12 @@ function deepFreeze(o) {
 // /https://codepen.io/SerhiiBIlyk/pen/eeLObL?editors=0012
 
 export const initialState = {
-  focusExpandedMode: false,
-  activeElement: null,
-  deep: null,
-  current:null,
-  tree:menu,
-  previous:null
+  menu:menu
 }
 
 const navigationReducer = function(state = initialState, action) {
   var freeze = deepFreeze(state);
   switch (action.type) {
-    case PREVIOUS_ELEMENT:
-    var {prevElement}=action.payload;
-    return {
-      ...state,
-      previous:prevElement
-    }
-    break;
     case CHANGE_TABINDEX:
       {
         var {index} = action.payload;
@@ -54,33 +39,6 @@ const navigationReducer = function(state = initialState, action) {
               tabindex:0
             }
           }
-        }
-      }
-      break;
-      case SWITCH_FOCUS_EXPANDED_MODE:{
-        if(action.payload.turn=='on'){
-          return {
-            ...state,
-            focusExpandedMode:true
-          }
-        }
-        else{
-          if(state.focusExpandedMode){
-            return {
-              ...state,
-              focusExpandedMode:false
-            }
-          }else{
-            return state;
-          }
-        }
-      }
-      break;
-      case ASSIGN_ELEMENT:{
-        var {deep}=action.payload;
-        return {
-          ...state,
-          deep:deep
         }
       }
       break;

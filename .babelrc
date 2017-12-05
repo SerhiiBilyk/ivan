@@ -1,11 +1,11 @@
 {
-  "presets": ["env", "react"],
+  "presets": ["env", "react","stage-0"],
   "env": {
     "production": {
-      "plugins": ["transform-react-remove-prop-types","transform-object-rest-spread"]
+      "plugins": ["transform-react-remove-prop-types","transform-object-rest-spread","transform-es2015-arrow-functions","transform-class-properties"]
     },
     "development":{
-      "plugins":["transform-object-rest-spread"]
+      "plugins":["transform-object-rest-spread","transform-es2015-arrow-functions","transform-class-properties"]
     },
     "test":{
         "plugins": ["transform-object-rest-spread"]
