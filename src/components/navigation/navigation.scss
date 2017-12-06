@@ -4,12 +4,19 @@
   @include clearfix;
   margin: 0 auto;
   padding: 0 5%;
-  position:relative;
+  position: relative;
+  &.initial{
+    .nav{
+      //height:auto;
+    }
+  }
 }
 
 .nav {
   width: 70%;
   float: left;
+  transition: height 1s ease;
+  overflow:hidden;
 }
 
 .navitem {
@@ -24,7 +31,7 @@
 .hamburger {
   border: 1px solid black;
   display: inline-block;
-  display:none;
+  display: none;
 }
 
 .logo {
@@ -38,26 +45,45 @@
 
 
 @include media ('zerro','sm-phone') {
-  .navigation {}
+  .navigation {
+    &.initial{
+      .nav{
+        height:0;
+      }
+    }
+    &.collapsed {
+      .nav {
+        height: 0;
+      }
+    }
+
+    &.expanded {
+      .nav {
+        height:100vh;
+        border: 2px solid purple;
+      }
+    }
+  }
 
   .hamburger {
-  display:block;
-  position:absolute;
-  top:0;
-  right:0;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   .nav {
     float: none;
     margin-top: 40px;
-    width:100%;
-    position:absolute;
-    left:0;
+    width: 100%;
+  //  position: absolute;
+    left: 0;
+    height: 0;
 
   }
 
   .navitem {
     display: block;
-        width:100%;
+    width: 100%;
   }
 }
