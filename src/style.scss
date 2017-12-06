@@ -1,8 +1,8 @@
-//@import './style/reset.scss';
+@import './style/reset.scss';
 *{
   box-sizing: border-box;
-//  margin:0;
-//  padding:0;
+  margin:0;
+  padding:0;
 }
 html {
   max-width: 100%;
@@ -12,7 +12,17 @@ html {
 body {
   font-family: "Open Sans";
 overflow:hidden;
-height:10000px;
+
+width:100%;
+height:5000px;
+/*
+border:1px solid black;
+background-image:url('https://20206-presscdn-pagely.netdna-ssl.com/zerif-lite/wp-content/themes/zerif-lite/images/bg.jpg');
+    background-position: top center ;
+background-size:auto;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    */
 }
 
 

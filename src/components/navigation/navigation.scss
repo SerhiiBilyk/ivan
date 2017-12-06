@@ -1,0 +1,63 @@
+.navigation {
+  border: 1px solid black;
+  font-size: 0;
+  @include clearfix;
+  margin: 0 auto;
+  padding: 0 5%;
+  position:relative;
+}
+
+.nav {
+  width: 70%;
+  float: left;
+}
+
+.navitem {
+  border: 1px solid black;
+  display: inline-block;
+  font-size: 14px;
+  padding: 10px 15px;
+  width: 16.6666%;
+  text-align: center;
+}
+
+.hamburger {
+  border: 1px solid black;
+  display: inline-block;
+  display:none;
+}
+
+.logo {
+  border: 1px solid red;
+  width: 30%;
+  font-size: 14px;
+  padding: 10px 15px;
+  display: inline-block;
+  float: left;
+}
+
+
+@include media ('zerro','sm-phone') {
+  .navigation {}
+
+  .hamburger {
+  display:block;
+  position:absolute;
+  top:0;
+  right:0;
+  }
+
+  .nav {
+    float: none;
+    margin-top: 40px;
+    width:100%;
+    position:absolute;
+    left:0;
+
+  }
+
+  .navitem {
+    display: block;
+        width:100%;
+  }
+}

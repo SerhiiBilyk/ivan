@@ -2,7 +2,9 @@ import React from 'react';
 import styles from './HomePage.scss';
 import CSSModules from 'react-css-modules';
 import Header from '../../components/header/header.jsx';
+import Section from '../../components/section/section.jsx';
 import Wrapper from '../../components/wrapper.js';
+
 
 export  class HomePage extends React.Component {
   constructor(props) {
@@ -12,6 +14,7 @@ export  class HomePage extends React.Component {
     return (
       <div>
       <Header/>
+
       </div>
     )
   }

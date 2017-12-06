@@ -2,7 +2,8 @@ import React from 'react';
 import CSSModules from 'react-css-modules';
 import styles from './header.scss';
 import PropTypes from 'prop-types';
-import TestWrapper from '../navigation/test.jsx';
+import TreeWrapper from '../tree/tree.jsx';
+import Navigation from '../../components/navigation/navigation.jsx';
 import {benchmark} from './benchmark.js';
 //import Worker from './worker.js';
 
@@ -28,8 +29,10 @@ class Header extends React.PureComponent {
   render() {
     return (
       <header styleName='header'>
-        <TestWrapper id={0}/>
+        <Navigation/>
+
         {/*WebWorker
+          <TreeWrapper id={0}/>
           <p style={{'marginTop':'50px'}}>WebWorker test!</p>
           <button id='click' onClick={e => this.clickHandler(e)}>With Worker</button>
           <button onClick={e => this.withoutWorker(e)}>Without worker</button>
