@@ -30,6 +30,9 @@ class Header extends React.PureComponent {
     return (
       <header styleName='header'>
         <Navigation/>
+        <div styleName='content'>
+          
+        </div>
 
         {/*WebWorker
           <TreeWrapper id={0}/>

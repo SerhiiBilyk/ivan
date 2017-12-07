@@ -1,27 +1,29 @@
-@keyframes block{
-  100%{
-    transform:translateY(0);
-  }
-}
+
 
 
 
 @keyframes expanded {
   0% {
     transform: translateY(-100%);
+    //margin-bottom:-100%;
   }
   100% {
     transform: none;
+    //margin-bottom:100%;
   }
 }
 @keyframes collapsed {
   0% {
     transform: none;
+    //  margin-bottom:100%;
   }
   100% {
     transform: translateY(-100%);
+    //  margin-bottom:-100%;
+
   }
 }
+
 
 .navigation {
   border: 1px solid black;
@@ -30,11 +32,8 @@
   margin: 0 auto;
   padding: 0 5%;
   position: relative;
-
   &.initial {
-    .nav {
-      height: auto;
-    }
+    font-size:0;
   }
   &.expanded{
     .nav{
@@ -42,19 +41,20 @@
     }
   }
 }
-
 .nav {
   width: 70%;
   float: left;
-  /*
-  animation-name: anim;
-    animation-delay: 0.1s;
-    animation-duration: 1s;
-    animation-fill-mode: forwards;
-    */
   overflow: hidden;
-
+  will-change:transform,opacity;
+  &.willChange{
+    will-change:transform,opacity;
+  }
+  &.auto{
+    will-change:auto;
+  }
 }
+
+
 
 .back {
   width: 100%;
@@ -99,26 +99,22 @@
   .back {
     display: block;
   }
-
   .nav {
     float: none;
-    //margin-top: 40px;
     top: 100%;
     width: 100%;
     position: absolute;
     left: 0;
     transform: translateY(-100%);
+  //  margin-bottom:-100%;
   }
 
   .navigation {
-    &.initial {
-      .nav {}
-    }
 
     &.collapsed {
       .nav {
         animation-name: collapsed;
-        //animation-delay: 0.1s;
+        animation-delay: 0;
         animation-duration: 1s;
         animation-fill-mode: forwards;
       }
@@ -127,10 +123,10 @@
     &.expanded {
       .nav {
         border: 2px solid purple;
-        animation-name: expanded,block;
-        animation-delay: 0.1s,1.1s;
-        animation-duration: 1s,1s;
-        animation-fill-mode: forwards,forwards;
+        animation-name: expanded;
+        animation-delay: 0.1s;
+        animation-duration: 1s;
+        animation-fill-mode: forwards,none;
       }
     }
   }

@@ -11,11 +11,11 @@ class Hamburger extends React.PureComponent {
     this.clickHandler=this.clickHandler.bind(this)
   }
   clickHandler(e){
-    console.log('hamburger click')
     this.props.change(e)
   }
   render() {
     var {collapsed}=this.props;
+    console.log('hamburger::render')
     return (
       <ul id="hamburger"
         styleName={'hamburger '+(collapsed?'':'expanded')}

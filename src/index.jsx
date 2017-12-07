@@ -13,7 +13,7 @@ import {store} from './store/configStore.js';
 
 import {whyDidYouUpdate} from 'why-did-you-update';
 if (process.env.NODE_ENV !== 'production') {
-//whyDidYouUpdate(React)
+whyDidYouUpdate(React)
 }
 
 

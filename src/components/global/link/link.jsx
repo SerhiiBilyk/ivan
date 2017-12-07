@@ -10,6 +10,7 @@ class Link extends React.PureComponent {
     super(props);
   }
   render() {
+    console.log('props',this.props)
     return (
         <RouterLink  {...this.props}>{this.props.children}</RouterLink>
     )

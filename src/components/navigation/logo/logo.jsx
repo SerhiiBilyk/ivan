@@ -4,7 +4,7 @@ import CSSModules from 'react-css-modules';
 
 
 
-export class Logo extends React.Component {
+export class Logo extends React.PureComponent {
   constructor(props) {
     super(props);
   }
