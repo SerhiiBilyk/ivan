@@ -29,17 +29,41 @@ export class Navigation extends React.Component {
         collapsed: !prevState.collapsed,
         initial:true
       }
-    })
+    },this.resetDropDownState)
+  }
+  resetDropDownState(){
+  const {collapsed,initial}=this.state;
+    if(collapsed&&initial){
+      setTimeout(()=>{
+        this.setState({
+          initial:false
+        })
+      },1000)
+    }
   }
   render() {
     /* Check if you need initial state*/
-    var {collapsed,initial}=this.state;
+    const {collapsed,initial}=this.state;
+    console.log('collapsed:',collapsed,'\ninitial:',initial)
+    var dropDownState=(function(state){
+      console.log('state',state)
+      if(!state.initial){
+        return 'initial'
+      }
+      else if(state.collapsed){
+        return 'collapsed'
+      }
+      else{
+        return 'expanded'
+      }
+    })(this.state)
     return (
-      <div styleName={`navigation ${initial?collapsed?'collapsed':'expanded':'initial'} `} >
+      <div styleName={`navigation ${dropDownState}`}>
+        <div styleName='back'></div>
         <div styleName='logo'>
           <Logo/>
         </div>
-        <nav styleName={`nav `} role='navigation' aria-label='main menu'>
+        <nav styleName={`nav`} role='navigation' aria-label='main menu'>
           <ul role='menubar'>
             {navitems.map((elem, index) => {
               return (
