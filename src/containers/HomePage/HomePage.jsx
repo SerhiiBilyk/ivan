@@ -14,6 +14,12 @@ export  class HomePage extends React.Component {
     return (
       <div>
       <Header/>
+      <div styleName='content'>
+
+      </div>
+      <div styleName='back'>
+
+      </div>
 
       </div>
     )

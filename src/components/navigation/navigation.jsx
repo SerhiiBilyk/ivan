@@ -29,7 +29,7 @@ export class Navigation extends React.Component {
       willChange: false
     }
     this.handlerHamburger = this.handlerHamburger.bind(this);
-    this.updateHamburger = this.updateHamburger.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
   componentWillUnmount() {
     this.removeListener()
@@ -38,8 +38,8 @@ export class Navigation extends React.Component {
    * If dropdown menu expanded and user stretches the window, hamburger and menu will collapse,
    * after that we remove listener
    */
-  updateHamburger() {
-    if (window.innerWidth > 300) {
+  resetState() {
+    if (window.innerWidth > 400) {
       this.setState({
         collapsed: true,
         initial: false,
@@ -48,7 +48,7 @@ export class Navigation extends React.Component {
     }
   }
   removeListener() {
-    window.removeEventListener("resize", this.updateHamburger);
+    window.removeEventListener("resize", this.resetState);
   }
   handlerHamburger() {
     this.setState(prevState => {
@@ -57,29 +57,24 @@ export class Navigation extends React.Component {
         initial: true,
         willChange: !prevState.willChange
       }
-    }, this.resetDropDownState)
+    }, this.addListener)
   }
   /**
    * If drop down menu expanded we add 'resize' eventListener
    * If dropdown menu collapsed we must after 1s css animation return to initial state
    */
-  resetDropDownState() {
-    !collapsed && window.addEventListener("resize", this.updateHamburger);
-    const {collapsed, initial} = this.state;
-    if (collapsed && initial) {
-      setTimeout(() => {
-        this.setState({initial: false})
-      }, 1000)
-    }
+  addListener() {
+    const {collapsed} = this.state;
+    !collapsed && window.addEventListener("resize", this.resetState);
   }
   render() {
     const {collapsed, initial, willChange} = this.state;
-    const dropDownState=((state)=>!state.initial?'initial':state.collapsed?'collapsed':'expanded')(this.state)
+    /*A little bit complicated comparison , because 3 dropdown states (initial, collapsed,!collapsed)*/
+    const dropDownState = ((state) => !state.initial ? 'initial' : state.collapsed ? 'collapsed' : 'expanded')(this.state)
     /*Always remember to remove the will-change property when you’re finished using it. */
-     const cssPerformance=((wl)=>wl ? 'willChange' : 'auto')(willChange)
+    const cssPerformance = ((wl) => wl? 'willChange': 'auto')(willChange)
     return (
       <div styleName={`navigation ${dropDownState}`}>
-        <div styleName='back'></div>
         <div styleName='logo'>
           <Logo/>
         </div>

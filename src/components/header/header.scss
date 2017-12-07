@@ -1,9 +1,13 @@
 .header{
   width:auto;
-}
-.content{
+  //overflow:hidden;
   width:100%;
-  background-color:purple;
-  opacity:0.7;
-  height:900px;
+  position:fixed;
+  z-index:10;
+
+}
+@include media ('zerro','lg-phone') {
+  .header{
+    position:relative;
+  }
 }

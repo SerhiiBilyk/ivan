@@ -4,21 +4,21 @@
 
 @keyframes expanded {
   0% {
-    transform: translateY(-100%);
-    //margin-bottom:-100%;
+    //transform: translateY(-100%);
+  margin-bottom:-100%;
   }
   100% {
-    transform: none;
-    //margin-bottom:100%;
+    //transform: none;
+    margin-bottom:0;
   }
 }
 @keyframes collapsed {
   0% {
-    transform: none;
+      margin-bottom:0;
     //  margin-bottom:100%;
   }
   100% {
-    transform: translateY(-100%);
+      margin-bottom:-100%;
     //  margin-bottom:-100%;
 
   }
@@ -29,11 +29,21 @@
   border: 1px solid black;
   font-size: 0;
   @include clearfix;
+
   margin: 0 auto;
-  padding: 0 5%;
+//  padding: 0 5%;
   position: relative;
+  overflow:hidden;
+
+  //z-index:100;
+  width:100%;
+  background-color:white;
   &.initial {
     font-size:0;
+    .nav{
+    //  max-height:0;
+      //z-index:-100;
+    }
   }
   &.expanded{
     .nav{
@@ -45,28 +55,17 @@
   width: 70%;
   float: left;
   overflow: hidden;
-  will-change:transform,opacity;
+  will-change:margin-bottom;
+  z-index:3;
+  //height:0;
   &.willChange{
-    will-change:transform,opacity;
+    will-change:margin-bottom;
   }
   &.auto{
     will-change:auto;
   }
 }
 
-
-
-.back {
-  width: 100%;
-  background-color: white;
-  position: relative;
-  z-index: 1;
-  position: absolute;
-  height: 100%;
-  left: 0;
-  right: 0;
-  display: none;
-}
 
 .navitem {
   border: 1px solid black;
@@ -95,7 +94,7 @@
 }
 
 
-@include media ('zerro','sm-phone') {
+@include media ('zerro','lg-phone') {
   .back {
     display: block;
   }
@@ -103,10 +102,10 @@
     float: none;
     top: 100%;
     width: 100%;
-    position: absolute;
+    position: relative;
     left: 0;
-    transform: translateY(-100%);
-  //  margin-bottom:-100%;
+    //transform: translateY(-100%);
+    margin-bottom:-100%;
   }
 
   .navigation {
@@ -127,6 +126,7 @@
         animation-delay: 0.1s;
         animation-duration: 1s;
         animation-fill-mode: forwards,none;
+
       }
     }
   }
@@ -134,8 +134,8 @@
   .hamburger {
     display: block;
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 2px;
+    right: 16px;
     z-index: 2;
   }
 
