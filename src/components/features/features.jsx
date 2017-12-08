@@ -15,12 +15,10 @@ var content = [
   }, {
     name: 'WOOCOMMERCE',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-  },
-  {
+  }, {
     name: 'CUSTOM CONTENT BLOCKS',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-  },
-  {
+  }, {
     name: 'GO PRO FOR MORE FEATURES',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
   }
@@ -37,21 +35,23 @@ export class Features extends React.Component {
           <Container>
             <Title text='features' legend='What makes this single-page WordPress theme unique.'/>
             <ul>
-            {content.map((elem,index)=>{
-              var {name,description}=elem;
-              return(
-                <li key={index}>
-                  <div>
-                    <img src={images[index]}/>
-                  </div>
-                  <div>
-                    <p>{name}</p>
-                    <p>{description}</p>
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
+              {content.map((elem, index) => {
+                var {name, description} = elem;
+                return (
+                  <li key={index} styleName='cell'>
+                      <div styleName='img'>
+                        <div styleName={`anim index-${index+1}`}></div>
+                        <img src={images[index]}/>
+                      </div>
+
+                    <div styleName='text'>
+                      <p>{name}</p>
+                      <p>{description}</p>
+                    </div>
+                  </li>
+                )
+              })}
+            </ul>
 
           </Container>
         </Block>
