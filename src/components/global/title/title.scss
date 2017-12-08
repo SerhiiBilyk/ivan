@@ -1,0 +1,41 @@
+.title{
+  color:black;
+  text-align:center;
+  font-size: 45px;
+    line-height: 40px;
+        text-transform: uppercase;
+        font-family: "Montserrat", Helvetica, sans-serif;
+    font-weight: 700;
+    margin-bottom:10px;
+}
+.legend{
+  font-size:16px;
+  text-align:center;
+}
+.header{
+  margin-bottom:50px;
+}
+
+
+
+
+@include media ('zerro','sm-phone') {
+  .title{
+  @include fontSize(20px,20px);
+  }
+}
+@include media ('sm-phone','md-phone') {
+  .title{
+  @include fontSize(25px,20px);
+  }
+}
+@include media ('md-phone','lg-phone') {
+  .title{
+  @include fontSize(30px,30px);
+  }
+}
+@include media ('lg-phone','sm-tablet') {
+  .title{
+  @include fontSize(35px,35px);
+  }
+}

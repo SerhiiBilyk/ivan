@@ -1,68 +1,55 @@
-.header{
-  width:auto;
-  width:100%;
-  background:rgba(0, 0, 0, 0.5);
-  &-content{
-    width:100%;
-    padding:285px 0 210px;
+.header {
+  width: auto;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
 
+  &-content {
+    width: 100%;
+    padding: 285px 0 210px;
   }
 }
-.heading{
-    z-index: 0;
-    color: #fff;
-    font-size: 55px;
-    line-height: 65px;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-family: "Montserrat", Helvetica, sans-serif;
-    width:75%;
-    margin:0 auto;
+
+.heading {
+  z-index: 0;
+  color: #fff;
+  font-size: 55px;
+  line-height: 65px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  width: 75%;
+  margin: 0 auto;
 }
+
+.align {
+  text-align: center;
+}
+
 
 @include media ('zerro','lg-phone') {
-  .header{
-    //  padding:0;
+  .header-content {
+    padding: 40% 0;
   }
 }
-@include media ('zerro','lg-phone') {
-  .heading{
-    font-size: 5vw;
-    line-height: 5.5vw;
 
-  }
-  .header-content{
-      padding:40% 0;
-  }
-}
-/*
+
 @include media ('zerro','sm-phone') {
-  .heading{
-    font-size: 22px;
-  line-height: 30px;
-
+  .heading {
+    @include fontSize(20px,30px);
   }
 }
+
+
 @include media ('sm-phone','md-phone') {
-  .heading{
-    font-size: 32px;
-    line-height: 37px;
-
+  .heading {
+    @include fontSize(35px,45px);
   }
 }
+
+
 @include media ('md-phone','lg-phone') {
-  .heading{
-    font-size: 41px;
-    line-height: 49px;
-
+  .heading {
+    @include fontSize(45px,55px);
   }
 }
-@include media ('lg-phone','md-tablet') {
-  .heading{
-    font-size: 45px;
-    line-height: 55px;
-
-  }
-}
-*/

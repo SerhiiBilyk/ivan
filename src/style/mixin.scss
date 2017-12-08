@@ -26,13 +26,7 @@ $breakpoints:(
     clear: both;
   }
 }
-@mixin navigation-height-fix{
-  min-height: 30px;
-  font-size:20px;
-  font-weight: 400;
-  line-height:30px;
-  padding:15px 0;
-}
+
 @mixin linkReset {
   a {
     &:active,
@@ -42,6 +36,10 @@ $breakpoints:(
       @content;
     }
   }
+}
+@mixin fontSize($font-size,$line-height) {
+  font-size: $font-size;
+  line-height: $line-height;
 }
 
 

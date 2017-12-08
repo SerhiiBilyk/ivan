@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import Navigation from '../../components/navigation/navigation.jsx';
 import Button from '../global/button/button.jsx';
 
-
 class Header extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -17,8 +16,10 @@ class Header extends React.PureComponent {
         <Navigation/>
         <div styleName='header-content'>
           <h2 styleName='heading'>Make the best of your WordPress experience with Zerif Lite</h2>
-          
-          <Button theme='green' text='features'/>
+          <div styleName='align'>
+            <Button theme='green' text='features'/>
+            <Button theme='red' text='download'/>
+          </div>
         </div>
       </header>
     )

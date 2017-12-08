@@ -3,10 +3,7 @@
 .wrapper{
     display:none;
 }
-.height-fix{
-  @include navigation-height-fix;
-  float: left;
-}
+
 .hamburger {
   z-index:1;
   width: 30px;

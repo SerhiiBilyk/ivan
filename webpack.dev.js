@@ -14,7 +14,7 @@ module.exports = merge(common, {
     },
     host: process.env.HOST, // Defaults to `localhost`
     port: process.env.PORT, // Defaults to 8080
-    contentBase: path.join(__dirname, './dist'),
+    contentBase: path.join(__dirname, './docs'),
     hot: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin(),
