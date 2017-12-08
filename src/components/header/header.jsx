@@ -17,6 +17,7 @@ class Header extends React.PureComponent {
         <Navigation/>
         <div styleName='header-content'>
           <h2 styleName='heading'>Make the best of your WordPress experience with Zerif Lite</h2>
+          
           <Button theme='green' text='features'/>
         </div>
       </header>
