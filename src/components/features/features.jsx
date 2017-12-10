@@ -11,17 +11,14 @@ console.log('images', images)
 var content = [
   {
     name: 'PARALLAX EFFECT',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
+    description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'
   }, {
     name: 'WOOCOMMERCE',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-  }, {
+  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }, {
     name: 'CUSTOM CONTENT BLOCKS',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-  }, {
+  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }, {
     name: 'GO PRO FOR MORE FEATURES',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. '
-  }
+  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }
 ]
 
 export class Features extends React.Component {
@@ -30,7 +27,7 @@ export class Features extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div styleName='features'>
         <Block>
           <Container>
             <Title text='features' legend='What makes this single-page WordPress theme unique.'/>
@@ -43,11 +40,10 @@ export class Features extends React.Component {
                         <div styleName={`anim index-${index+1}`}></div>
                         <img src={images[index]}/>
                       </div>
-
-                    <div styleName='text'>
-                      <p>{name}</p>
-                      <p>{description}</p>
+                    <div styleName={`title index-${index+1}`}>
+                      <h3 styleName='name'>{name}</h3>
                     </div>
+                    <p styleName='desc'>{description}</p>
                   </li>
                 )
               })}
