@@ -45,6 +45,7 @@ background-size:cover;
 
 @include media ('zerro','sm-phone') {
   body {
-    //overflow-x: hidden;
+      background-attachment: scroll;
+      background-size:auto;
   }
 }
