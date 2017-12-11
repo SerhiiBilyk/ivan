@@ -2,15 +2,16 @@ import React from 'react';
 import styles from './title.scss';
 import CSSModules from 'react-css-modules';
 
+import PropTypes from 'prop-types';
 
 export  class Title extends React.PureComponent {
   constructor(props) {
     super(props);
   }
   render() {
-    var {text,legend}=this.props
+    var {text,legend,theme}=this.props
     return (
-      <div styleName='header'>
+      <div styleName={`header ${theme}`}>
       <h2 styleName='title'>
         {text}
       </h2>
@@ -21,6 +22,10 @@ export  class Title extends React.PureComponent {
     )
   }
 }
-
+Title.propTypes = {
+  theme: PropTypes.string.isRequired,
+  text:PropTypes.string.isRequired,
+  legend:PropTypes.string.isRequired
+};
 
 export default CSSModules(Title, styles, {allowMultiple: true});

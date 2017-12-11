@@ -7,7 +7,7 @@
     "test": "jest",
     "testing": "nodemon --watch  -e jsx  --exec \"npm  test \" ",
     "build": "webpack --config webpack.prod.js --env production",
-    "start": "  nodemon --watch  webpack.dev.js --exec \" webpack-dev-server --config webpack.dev.js --content-base dist/  --env development\"  ",
+    "start": "  nodemon --watch  webpack.dev.js --exec \" webpack-dev-server   --config webpack.dev.js --content-base dist/  --env development\"  ",
     "server": "nodemon server.js"
   },
   "jest": {
@@ -72,6 +72,8 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "browser-sync": "^2.18.13",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "compression-webpack-plugin": "^1.0.1",
     "css-loader": "^0.28.7",
     "enzyme": "^3.1.0",

@@ -5,11 +5,10 @@ var compression = require('compression')
 var app = express();
 
 const v8 = require('v8');
-console.log('v8',v8.getHeapStatistics())
 
 app.use(compression())
 
-app.use(express.static('dist'));
+app.use(express.static('docs'));
 app.get("/", function(req, res) {
    res.sendfile('index.html')
 });

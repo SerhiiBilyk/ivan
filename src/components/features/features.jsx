@@ -3,7 +3,7 @@ import styles from './features.scss';
 import CSSModules from 'react-css-modules';
 import {Block, Title, Container} from '../global/combined.jsx';
 import {imageGenerator} from '../global/imgGenerator.js';
-
+import Cell from './cell.jsx';
 var context = require.context('./img', false, /[0-9]+(.png)$/);
 var images = imageGenerator(context, 4, 'png');
 console.log('images', images)
@@ -20,35 +20,29 @@ var content = [
     name: 'GO PRO FOR MORE FEATURES',
   description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }
 ]
-
+/**
+ * css .anim class has unremovable will-change property,
+ * you need to switch this property
+ */
 export class Features extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
+
     return (
       <div styleName='features'>
         <Block>
           <Container>
-            <Title text='features' legend='What makes this single-page WordPress theme unique.'/>
+            <Title text='features' theme='black' legend='What makes this single-page WordPress theme unique.'/>
             <ul>
               {content.map((elem, index) => {
                 var {name, description} = elem;
                 return (
-                  <li key={index} styleName='cell'>
-                      <div styleName='img'>
-                        <div styleName={`anim index-${index+1}`}></div>
-                        <img src={images[index]}/>
-                      </div>
-                    <div styleName={`title index-${index+1}`}>
-                      <h3 styleName='name'>{name}</h3>
-                    </div>
-                    <p styleName='desc'>{description}</p>
-                  </li>
+                  <Cell index={index} key={index} image={images[index]} {...elem}/>
                 )
               })}
             </ul>
-
           </Container>
         </Block>
       </div>

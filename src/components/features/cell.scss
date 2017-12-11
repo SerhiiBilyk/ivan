@@ -1,0 +1,117 @@
+$colors: '#e96656','#34d293','#3ab0e2','#f7d861';
+.cell {
+  width: 25%;
+  float: left;
+  border: 1px solid purple;
+}
+
+.anim {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+  &.optimize{
+    will-change: opacity;
+  }
+  &.non{
+    will-change:auto;
+  }
+  @for $index from 1 through 4 {
+    &.index-#{$index} {
+      background-color: unquote(nth($colors,$index));
+    }
+  }
+}
+
+
+.img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 150px;
+  position: relative;
+  z-index: 0;
+  background-color: #ececec;
+
+  img {
+    vertical-align: middle;
+    position: relative;
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    left: 10px;
+    top: 10px;
+    background-color: white;
+    z-index: 1;
+  }
+
+  &:hover {
+    .anim {
+      opacity: 1;
+    }
+  }
+}
+
+.text {
+  color: black;
+}
+
+.name {
+  color: black;
+  text-align: center;
+}
+
+.title {
+  font-size: 17px;
+  font-weight: bold;
+  position: relative;
+  border: 1px solid black;
+  padding: 10px 0;
+  @for $i from 1 through 4 {
+    &.index-#{$i} {
+      &:after {
+        border-top: 2px solid unquote(nth($colors,$i));
+      }
+    }
+  }
+
+  &:after {
+    content: '';
+    width: 80%;
+    height: 1px;
+    position: absolute;
+    border: none;
+    bottom: 0;
+    left: 10%;
+  }
+}
+.desc{
+  color:black;
+  text-align:center;
+  padding:10px 10px;
+}
+
+
+@include media ('zerro','md-phone') {
+  .cell {
+    width: 100%;
+    float: none;
+  }
+}
+
+
+@include media ('md-phone','sm-tablet') {
+  .cell {
+    width: 50%;
+  }
+}

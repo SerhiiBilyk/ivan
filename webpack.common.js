@@ -11,7 +11,7 @@ module.exports = {
       "babel-polyfill", APP_DIR + '/index.jsx'
     ]
   },
-   devtool: 'inline-source-map',
+   devtool:'inline-source-map',
   output: {
     path: BUILD_DIR,
     filename: '[name].app.js',
