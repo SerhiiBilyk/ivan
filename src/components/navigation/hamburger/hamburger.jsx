@@ -11,25 +11,17 @@ class Hamburger extends React.PureComponent {
       optimization: 'non'
     }
     this.clickHandler = this.clickHandler.bind(this)
-    this.mouseEnterHandler = this.mouseEnterHandler.bind(this)
-    this.mouseLeaveHandler = this.mouseLeaveHandler.bind(this)
-
   }
   clickHandler(e) {
     this.props.change(e)
   }
-  mouseEnterHandler() {
-    this.setState({optimization: 'willChange'})
-  }
-  mouseLeaveHandler() {
-    this.setState({optimization: 'non'})
-  }
+
   render() {
     var {collapsed} = this.props;
     var {optimization} = this.state;
     console.log('hamburger::render')
     return (
-      <ul id="hamburger" styleName={`hamburger ${optimization} ${collapsed ? '': 'expanded'}`}
+      <ul id="hamburger" styleName={`hamburger ${collapsed ? '': 'expanded'}`}
         onClick={this.clickHandler}
         onMouseEnter={this.mouseEnterHandler}
         onMouseLeave={this.mouseLeaveHandler}>

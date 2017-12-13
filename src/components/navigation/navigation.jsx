@@ -51,13 +51,14 @@ export class Navigation extends React.Component {
     window.removeEventListener("resize", this.resetState);
   }
   handlerHamburger() {
-    this.setState(prevState => {
-      return {
-        collapsed: !prevState.collapsed,
-        initial: true,
-        willChange: !prevState.willChange
-      }
-    }, this.addListener)
+
+      this.setState(prevState => {
+        return {
+          collapsed: !prevState.collapsed,
+          initial: true
+        }
+      }, this.addListener)
+
   }
   /**
    * If drop down menu expanded we add 'resize' eventListener
@@ -73,13 +74,12 @@ export class Navigation extends React.Component {
     /*A little bit complicated comparison , because 3 dropdown states (initial, collapsed,!collapsed)*/
     const dropDownState = ((state) => !state.initial ? 'initial' : state.collapsed ? 'collapsed' : 'expanded')(this.state)
     /*Always remember to remove the will-change property when you’re finished using it. */
-    const cssPerformance = ((wl) => wl? 'willChange': 'auto')(willChange)
     return (
       <div styleName={`navigation ${dropDownState}`}>
         <div styleName='logo'>
           <Logo/>
         </div>
-        <nav styleName={`nav ${cssPerformance}`} role='navigation' aria-label='main menu'>
+        <nav styleName={`nav`} role='navigation' aria-label='main menu'>
           <ul role='menubar'>
             {navitems.map((elem, index) => {
               return (

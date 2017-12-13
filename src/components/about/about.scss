@@ -64,12 +64,9 @@ $side: 90px;
   .item-#{$i} {
     &::after {
       animation: after-#{$i} 1s linear 1 forwards 3s;
-
     }
-
     &::before {
-      animation: before-#{$i} 3s linear 1  forwards ;
-  
+      animation: before-#{$i} 3s linear 1 forwards ;  
     }
   }
 }
