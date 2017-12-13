@@ -13,7 +13,7 @@ class Header extends React.PureComponent {
   render() {
     return (
       <header styleName='header'>
-        <Navigation/>
+
         <div styleName='header-content'>
           <h2 styleName='heading'>Make the best of your WordPress experience with Zerif Lite</h2>
           <div styleName='align'>
