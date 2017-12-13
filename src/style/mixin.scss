@@ -77,6 +77,14 @@ $top:0;
 }
 
 
+@function PercentToDegree($percent) {
+   @if $percent <=50{
+    @return unquote(((360/100) * $percent)+'deg');
+  }
+  @else {
+     @return unquote( '180deg');
+  }
+}
 
 @mixin circleDiagram($list) {
    @for $i from 1 through 3{

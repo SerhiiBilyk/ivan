@@ -69,6 +69,7 @@ export class Navigation extends React.Component {
   }
   render() {
     const {collapsed, initial, willChange} = this.state;
+    console.log('collapsed',collapsed)
     /*A little bit complicated comparison , because 3 dropdown states (initial, collapsed,!collapsed)*/
     const dropDownState = ((state) => !state.initial ? 'initial' : state.collapsed ? 'collapsed' : 'expanded')(this.state)
     /*Always remember to remove the will-change property when you’re finished using it. */
