@@ -1,0 +1,12 @@
+.translatedx {
+  transition: transform 1s ease;
+
+  &.none {
+
+      transform: translateY(-220px);
+  }
+  &.move {
+
+    transform: translateY(0px);
+  }
+}

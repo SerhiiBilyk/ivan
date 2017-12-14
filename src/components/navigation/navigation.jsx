@@ -20,7 +20,7 @@ var navitems = [
  * @type {Boolean} initial - does dropdown in initial state or not
  * @type {Boolean} willChange - apply
  */
-export class Navigation extends React.Component {
+export class Navigation extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,12 +59,14 @@ export class Navigation extends React.Component {
         }
       }, this.addListener)
 
+
   }
   /**
    * If drop down menu expanded we add 'resize' eventListener
    * If dropdown menu collapsed we must after 1s css animation return to initial state
    */
   addListener() {
+    this.props.expand(this.state.collapsed)
     const {collapsed} = this.state;
     !collapsed && window.addEventListener("resize", this.resetState);
   }
@@ -76,23 +78,25 @@ export class Navigation extends React.Component {
     /*Always remember to remove the will-change property when you’re finished using it. */
     return (
       <div styleName={`navigation ${dropDownState}`}>
+<div styleName='mask'>
         <div styleName='logo'>
           <Logo/>
         </div>
+        <div styleName='hamburger'>
+          <Hamburger change={this.handlerHamburger} collapsed={this.state.collapsed}/>
+        </div>
+      </div>
         <nav styleName={`nav`} role='navigation' aria-label='main menu'>
           <ul role='menubar'>
             {navitems.map((elem, index) => {
               return (
-                <li key={index} role='none' styleName='navitem'>
+                <li key={index} role='none' styleName={`navitem-${index+1}`}>
                   <Link role='menuitem' to={`/${elem.toLowerCase()}`}>{elem}</Link>
                 </li>
               )
             })}
           </ul>
         </nav>
-        <div styleName='hamburger'>
-          <Hamburger change={this.handlerHamburger} collapsed={this.state.collapsed}/>
-        </div>
       </div>
     )
   }
