@@ -18,12 +18,10 @@ class Hamburger extends React.PureComponent {
 
   render() {
     var {collapsed} = this.props;
-    var {optimization} = this.state;
+    var css=collapsed?'':'expanded';
     return (
-      <ul id="hamburger" styleName={`hamburger ${collapsed ? '': 'expanded'}`}
-        onClick={this.clickHandler}
-        onMouseEnter={this.mouseEnterHandler}
-        onMouseLeave={this.mouseLeaveHandler}>
+      <ul id="hamburger" styleName={`hamburger ${css}`}
+        onClick={this.clickHandler}>
         <li></li>
         <li></li>
         <li></li>
