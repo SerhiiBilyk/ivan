@@ -4,9 +4,12 @@ import CSSModules from 'react-css-modules';
 import {Block, Title, Container} from '../global/combined.jsx';
 import Button from '../global/button/button.jsx';
 
-export  class Inject extends React.PureComponent {
+export  class Inject extends React.Component {
   constructor(props) {
     super(props);
+  }
+  shouldComponentUpdate(){
+    return false;
   }
   render() {
     return (

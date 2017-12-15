@@ -5,11 +5,13 @@ import PropTypes from 'prop-types';
 import Navigation from '../../components/navigation/navigation.jsx';
 import Button from '../global/button/button.jsx';
 
-class Header extends React.PureComponent {
+class Header extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  shouldComponentUpdate(){
+    return false;
+  }
   render() {
     return (
       <header styleName='header'>

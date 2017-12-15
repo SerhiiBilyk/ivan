@@ -1,12 +1,16 @@
 .translatedx {
   transition: transform 1s ease;
 
-  &.none {
-
-      transform: translateY(-220px);
+  &.collapsed {
+  transition: transform 1s ease;
+      transform: translateY(-240px);
   }
-  &.move {
-
-    transform: translateY(0px);
+  &.expanded {
+    transform: translateY(0);
+  }
+  &.initial{
+    color:black;
+    transition:none;
+    transform: translateY(-240px);
   }
 }

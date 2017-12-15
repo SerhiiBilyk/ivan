@@ -19,7 +19,6 @@ class Hamburger extends React.PureComponent {
   render() {
     var {collapsed} = this.props;
     var {optimization} = this.state;
-    console.log('hamburger::render')
     return (
       <ul id="hamburger" styleName={`hamburger ${collapsed ? '': 'expanded'}`}
         onClick={this.clickHandler}

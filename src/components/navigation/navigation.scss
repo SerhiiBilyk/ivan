@@ -2,35 +2,36 @@
   0% {
     //height:0;
     opacity: 0;
-    visibility:hidden;
+    visibility: hidden;
   }
 
   100% {
-    //  height:220px;
     opacity: 1;
-          visibility:visible;
+    visibility: visible;
   }
 }
 @keyframes collapsed {
   0% {
     opacity: 1;
-      visibility:visible;
+    visibility: visible;
   }
 
   100% {
     opacity: 0;
-          visibility:hidden;
+    visibility: hidden;
   }
 }
 
 .mask {
   background-color: white;
   @include clearfix;
+  display: inline-block;
+  width: 30%;
+  float: left;
 }
 
 .navigation {
   font-size: 0;
-  //@include clearfix;
   margin: 0 auto;
   position: fixed;
   overflow: hidden;
@@ -55,38 +56,24 @@
   float: left;
   overflow: hidden;
   z-index: 3;
-    background-color:white;
-
-  &.willChange {
-    will-change: margin-bottom;
-  }
-
-  &.auto {
-    will-change: auto;
-  }
 }
-@for $i from 1 through 6 {
-  .navitem-#{$i} {
+
+.navitem {
+  display: inline-block;
+  font-size: 14px;
+  width: 16.6666%;
+  text-align: center;
+  transform-origin: top;
+  background-color: white;
+  @include linkReset {
+    color: black;
+    text-decoration: none;
+  }
+
+  a {
+    padding: 10px 15px;
+    width: 100%;
     display: inline-block;
-    font-size: 14px;
-    width: 16.6666%;
-    text-align: center;
-    visibility:hidden;
-
-
-
-    @include linkReset {
-      color: black;
-      text-decoration: none;
-    }
-
-
-
-    a {
-      padding: 10px 15px;
-      width: 100%;
-      display: inline-block;
-    }
   }
 }
 
@@ -97,7 +84,7 @@
 
 .logo {
   border: 1px solid red;
-  width: 30%;
+  width: 100%;
   font-size: 14px;
   padding: 10px 15px;
   display: inline-block;
@@ -112,53 +99,40 @@
     display: block;
   }
 
+  .mask {
+    display: block;
+    width: 100%;
+    z-index: 3;
+    position: relative;
+  }
+
+  .logo {
+    width: 30%;
+  }
+
   .nav {
     width: 100%;
-    z-index: 100;
-  //  opacity: 0;
+    z-index: 2;
     top: 40px;
-    //height:0;
+    transition: none;
+    transform: translateY(-240px);
   }
 
   .navigation {
     position: relative;
 
     &.collapsed {
-      @for $i from 1 through 6 {
-        .navitem-#{$i} {
-        visibility:visible;
-        }
-      }
-
-      @for $i from 1 through 6 {
-        .navitem-#{$i} {
-
-        animation-name: collapsed;
-        animation-duration: .16s;
-        animation-delay:unquote( 1 - ($i * 0.1)+'s');
-        animation-fill-mode: forwards;
-
-        }
+      .nav {
+        transition: all 1s ease;
+        transform: translateY(-240px);
       }
     }
 
     &.expanded {
-      @for $i from 1 through 6 {
-        .navitem-#{$i} {
-        animation-name: expanded;
-        animation-duration: 0.16s;
-        animation-delay:unquote( ($i * 0.1)+'s');
-        animation-fill-mode: forwards;
-
-        }
-      }
-      /*
       .nav {
-       animation-name: expanded;
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
+        transition: all 1s ease;
+        transform: translateY(0);
       }
-      */
     }
   }
 
@@ -169,10 +143,9 @@
     right: 16px;
     z-index: 2;
   }
-  @for $i from 1 through 6 {
-    .navitem-#{$i} {
-      display: block;
-      width: 100%;
-    }
+
+  .navitem {
+    display: block;
+    width: 100%;
   }
 }

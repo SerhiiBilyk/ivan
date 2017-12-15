@@ -5,6 +5,10 @@ import Link from '../global/link/link.jsx';
 
 import Logo from './logo/logo.jsx';
 import Hamburger from './hamburger/hamburger.jsx';
+import dropDownState from '../global/dropDownCSSGenerator.js';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as AppActions from '../../actions/dropdown.js';
 
 var navitems = [
   'Home',
@@ -23,11 +27,6 @@ var navitems = [
 export class Navigation extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      collapsed: true,
-      initial: false,
-      willChange: false
-    }
     this.handlerHamburger = this.handlerHamburger.bind(this);
     this.resetState = this.resetState.bind(this)
   }
@@ -40,57 +39,43 @@ export class Navigation extends React.PureComponent {
    */
   resetState() {
     if (window.innerWidth > 400) {
-      this.setState({
-        collapsed: true,
-        initial: false,
-        willChange: false
-      }, this.removeListener)
+      this.props.resetDropdownState();
+      this.removeListener();
     }
   }
   removeListener() {
     window.removeEventListener("resize", this.resetState);
   }
   handlerHamburger() {
-
-      this.setState(prevState => {
-        return {
-          collapsed: !prevState.collapsed,
-          initial: true
-        }
-      }, this.addListener)
-
-
+    this.props.changeDropdownState();
+    this.addListener();
   }
   /**
    * If drop down menu expanded we add 'resize' eventListener
    * If dropdown menu collapsed we must after 1s css animation return to initial state
    */
   addListener() {
-    this.props.expand(this.state.collapsed)
-    const {collapsed} = this.state;
-    !collapsed && window.addEventListener("resize", this.resetState);
+    const {collapsed} = this.props;
+    collapsed && window.addEventListener("resize", this.resetState);
   }
   render() {
-    const {collapsed, initial, willChange} = this.state;
-    console.log('collapsed',collapsed)
-    /*A little bit complicated comparison , because 3 dropdown states (initial, collapsed,!collapsed)*/
-    const dropDownState = ((state) => !state.initial ? 'initial' : state.collapsed ? 'collapsed' : 'expanded')(this.state)
-    /*Always remember to remove the will-change property when you’re finished using it. */
+    const {collapsed, initial} = this.props;
+    const css = dropDownState(collapsed, initial);
     return (
-      <div styleName={`navigation ${dropDownState}`}>
-<div styleName='mask'>
-        <div styleName='logo'>
-          <Logo/>
+      <div styleName={`navigation ${css}`}>
+        <div styleName='mask'>
+          <div styleName='logo'>
+            <Logo/>
+          </div>
+          <div styleName='hamburger'>
+            <Hamburger change={this.handlerHamburger} collapsed={collapsed}/>
+          </div>
         </div>
-        <div styleName='hamburger'>
-          <Hamburger change={this.handlerHamburger} collapsed={this.state.collapsed}/>
-        </div>
-      </div>
-        <nav styleName={`nav`} role='navigation' aria-label='main menu'>
+        <nav styleName='nav' role='navigation' aria-label='main menu'>
           <ul role='menubar'>
             {navitems.map((elem, index) => {
               return (
-                <li key={index} role='none' styleName={`navitem-${index+1}`}>
+                <li key={index} role='none' styleName={`navitem`}>
                   <Link role='menuitem' to={`/${elem.toLowerCase()}`}>{elem}</Link>
                 </li>
               )
@@ -102,4 +87,11 @@ export class Navigation extends React.PureComponent {
   }
 }
 
-export default CSSModules(Navigation, styles, {allowMultiple: true});
+const mapDispatchToProps = (dispatch) => bindActionCreators(AppActions, dispatch);
+function mapStateToProps(state) {
+  var {collapsed, initial} = state.navigationReducer;
+  return {collapsed: collapsed, initial: initial}
+}
+const CSSModule = CSSModules(Navigation, styles, {allowMultiple: true});
+var Navigation_ = connect(mapStateToProps, mapDispatchToProps)(CSSModule)
+export default Navigation_;

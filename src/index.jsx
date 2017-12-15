@@ -11,6 +11,7 @@ import {HashRouter as Router, Route, Link, Switch} from 'react-router-dom';
 import rootReducer from './reducers/index.reducer.js';
 import {store} from './store/configStore.js';
 
+
 import {whyDidYouUpdate} from 'why-did-you-update';
 if (process.env.NODE_ENV !== 'production') {
 whyDidYouUpdate(React)

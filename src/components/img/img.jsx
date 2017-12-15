@@ -11,12 +11,11 @@ export  class Img extends React.Component {
     this.loaderHandler=this.loaderHandler.bind(this)
   }
   loaderHandler(e){
-    console.log('img loaded')
   }
   render() {
     return (
       <div>
-        <img onLoad={this.loaderHandler} src={img} />    
+        <img onLoad={this.loaderHandler} src={img} />
       </div>
     )
   }

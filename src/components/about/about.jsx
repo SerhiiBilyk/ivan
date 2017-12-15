@@ -26,7 +26,9 @@ export class About extends React.Component {
       animation: ['item-1', 'item-2', 'item-3']
     }
   }
-
+  shouldComponentUpdate(){
+    return false;
+  }
   render() {
     var circles = CircleDiagramsConfig.map((elem, index) => {
       return (
