@@ -1,0 +1,89 @@
+$blue: #00ccff;
+$side: 90px;
+
+
+
+.circle {
+  position: relative;
+  display:block; //  margin:5px;
+  width: 100%;
+  float: left;
+  @include clearfix;
+}
+
+
+.container {
+  height: 100%;
+  display: inline-block;
+  position: relative;
+
+  &::after {
+    content: attr(per);
+    position: absolute;
+    color: black;
+    top: 4px;
+    left: 4px;
+    line-height: $side;
+    text-align: center;
+    width: $side - 8px;
+    height: $side - 8px;
+    border-radius: 50px;
+    background-color: white;
+  }
+}
+.pie {
+  display: inline-block;
+  width: $side;
+  height: $side;
+  border-radius: 50%;
+  background: #555555;
+  background-image: linear-gradient(to right, transparent 50%, $blue 0);
+  position: relative;
+  float:left;
+
+  &::after {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: $blue;
+    transform-origin: left;
+    position: relative;
+    top: -$side;
+    opacity: 0;
+    transform-origin: left;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+  }
+}
+.name {
+  margin: 10px 0;
+  font-size: 22px;
+  line-height: 28px;
+  display:inline-block;
+  font-weight: 400;
+  float:left;
+}
+
+
+$percent:(66,82,41,89);
+@include circleDiagram($percent);
+@for $i from 1 through length($percent) {
+  .item-#{$i} {
+    &::after {
+      animation: after-#{$i} 1s linear 1 forwards 3s;
+    }
+    &::before {
+      animation: before-#{$i} 3s linear 1 forwards ;
+    }
+  }
+}

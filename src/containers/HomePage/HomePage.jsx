@@ -7,6 +7,7 @@ import Section from '../../components/section/section.jsx';
 import Features from '../../components/features/features.jsx';
 import Inject from '../../components/inject/inject.jsx';
 import About from '../../components/about/about.jsx';
+import Team from '../../components/team/team.jsx';
 import TranslatedX from '../../components/translatedx/translatedx.jsx';
 
 /**
@@ -28,6 +29,7 @@ export class HomePage extends React.PureComponent {
           <Features/>
           <Inject/>
           <About/>
+          <Team/>
         </TranslatedX>
       </div>
     )

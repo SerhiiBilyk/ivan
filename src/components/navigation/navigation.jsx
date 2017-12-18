@@ -10,14 +10,11 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as AppActions from '../../actions/dropdown.js';
 
-var navitems = [
-  'Home',
-  'Team',
-  'About',
-  'Testimonials',
-  'Contact',
-  'Offers'
-]
+import {config} from '../global/config.js';
+
+
+var {navigation}=config;
+
 /**
  * [this.state description]
  * @type {Boolean} collapsed - dropdown setState
@@ -73,7 +70,7 @@ export class Navigation extends React.PureComponent {
         </div>
         <nav styleName='nav' role='navigation' aria-label='main menu'>
           <ul role='menubar'>
-            {navitems.map((elem, index) => {
+            {navigation.map((elem, index) => {
               return (
                 <li key={index} role='none' styleName={`navitem`}>
                   <Link role='menuitem' to={`/${elem.toLowerCase()}`}>{elem}</Link>

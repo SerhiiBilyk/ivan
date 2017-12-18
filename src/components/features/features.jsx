@@ -4,22 +4,12 @@ import CSSModules from 'react-css-modules';
 import {Block, Title, Container} from '../global/combined.jsx';
 import {imageGenerator} from '../global/imgGenerator.js';
 import Cell from './cell.jsx';
+import {config} from '../global/config.js';
 var context = require.context('./img', false, /[0-9]+(.png)$/);
 var images = imageGenerator(context, 4, 'png');
-console.log('images', images)
 
-var content = [
-  {
-    name: 'PARALLAX EFFECT',
-    description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'
-  }, {
-    name: 'WOOCOMMERCE',
-  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }, {
-    name: 'CUSTOM CONTENT BLOCKS',
-  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }, {
-    name: 'GO PRO FOR MORE FEATURES',
-  description: 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.'  }
-]
+const {features} = config;
+
 /**
  * css .anim class has unremovable will-change property,
  * you need to switch this property
@@ -28,23 +18,19 @@ export class Features extends React.Component {
   constructor(props) {
     super(props);
   }
-  shouldComponentUpdate(){
+  shouldComponentUpdate() {
     return false;
   }
   render() {
-
+    var {text, theme, legend} = features.title
+    const content=features.content.map((elem, index) => <Cell index={index} key={index} image={images[index]} {...elem}/>)
     return (
       <div styleName='features'>
         <Block>
           <Container>
-            <Title text='features' theme='black' legend='What makes this single-page WordPress theme unique.'/>
+            <Title {...features.title}/>
             <ul>
-              {content.map((elem, index) => {
-                var {name, description} = elem;
-                return (
-                  <Cell index={index} key={index} image={images[index]} {...elem}/>
-                )
-              })}
+              {content}
             </ul>
           </Container>
         </Block>

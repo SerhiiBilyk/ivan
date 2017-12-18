@@ -6,7 +6,7 @@
   <title>webpack demo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="preload" href='main.app.js' as="script">
+  <link rel="preload" href='main.prod.app.js' as="script">
   <link rel="preload" href="style.css" as="style">
 
 
@@ -17,6 +17,8 @@
 
 <body>
 
+  <script "text/javascript" src='common.prod.app.js'></script>
+  <script "text/javascript" src='main.prod.app.js'></script>
 
   <!--
 
@@ -24,6 +26,7 @@
 <script "text/javascript" src='common.prod.app.js'></script>
 -->
   <script type="text/javascript">
+  /*
     setTimeout(function() {
       var documentFragment = document.createDocumentFragment();
 
@@ -41,6 +44,7 @@
       documentFragment.appendChild(css);
       document.getElementsByTagName('head')[0].appendChild(documentFragment);
     }, 0)
+    */
   </script>
 
 </body>

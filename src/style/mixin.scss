@@ -77,6 +77,19 @@ $top:0;
 }
 
 
+
+/**
+ * if more then 50%, then we need to find the difference
+ *for example, if we have 72%, then second circle must rotate for 72%-50%=12%
+  */
+@function normalize($percent) {
+   @if ($percent <= 50){
+    @return 0;
+  }
+  @else {
+     @return $percent - 50;
+  }
+}
 @function PercentToDegree($percent) {
    @if $percent <=50{
     @return unquote(((360/100) * $percent)+'deg');
@@ -87,7 +100,7 @@ $top:0;
 }
 
 @mixin circleDiagram($list) {
-   @for $i from 1 through 3{
+   @for $i from 1 through length($list){
     @keyframes before-#{$i} {
       to {
         transform: rotate(PercentToDegree(nth($list,$i)));
